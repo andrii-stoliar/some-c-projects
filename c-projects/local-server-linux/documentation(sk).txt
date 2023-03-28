@@ -1,0 +1,39 @@
+Documentation for project by Andrii Stoliar FEI RK06
+
+Knižnice, ktoré boli použité:  
+<stdio.h>
+<stdlib.h>
+<string.h>
+<unistd.h>
+<sys/socket.h>
+<sys/types.h>
+<netinet/in.h>
+<arpa/inet.h>
+<math.h>
+<signal.h>
+<time.h> 
+<pthread.h>
+<semaphore.h>
+
+Súbor "server.c" obsahuje server, ktorý používa technológiu soketu na pripojenie a príjem údajov od klientov. 
+Od prvého klienta dostane index planét (databáza servera obsahuje potrebné údaje pre každú planétu). 
+Druhý klient mu pošle výšku objektu vzhľadom na povrch planéty. 
+Server potom vypočíta prvú cosmicku rýchlosť a odošle ju štvrtému klientovi. 
+Prvý, druhý a štvrtý klient sa pripájajú k serveru. 
+Na serveri je aj časovač, ktorý vypne server minútu po spustení programu.
+
+Súbor "client12.c" obsahuje kód pre prvého a druhého klienta. 
+Sú napísané vo funkciách a volajú sa cez vlákno. 
+Druhý klient sa volá po prvom kvôli semaforu. 
+Pripojenie k serveru cez zásuvky. 
+Prvý klient by mal poslať index planéty a druhý - výšku objektu vzhľadom na planétu.
+
+Súbor "client34.c" obsahuje kód pre tretieho a štvrtého klienta. 
+Fungujú cez fork, tretí klient je podriadený proces, nie je pripojený k serveru a musí si vybrať, akú rýchlosť dostane prvý alebo druhý štvrtý klient. 
+Prostredníctvom pipe prijíma štvrtý klient dáta od tretieho a prijíma rýchlosť zo servera cez sokety. 
+V závislosti od želania tretieho klienta zobrazí požadovanú rýchlosť.
+
+Súbor "makefile" obsahuje príkaz na rýchlu kompiláciu všetkých súborov .c.
+
+
+
